@@ -15,7 +15,7 @@ TimeDelta t= new TimeDelta();
 
 void setup()
 {
-  size (800, 400, P3D); 
+  size (displayWidth, displayHeight, P3D); 
 
   RectShape player = new RectShape(plyr.plyrPos.x, plyr.plyrPos.y, 10, 10);
   rects.add(0, player);
