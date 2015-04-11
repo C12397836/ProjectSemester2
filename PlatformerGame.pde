@@ -15,7 +15,8 @@ TimeDelta t= new TimeDelta();
 
 void setup()
 {
-  size (displayWidth, displayHeight, P3D); 
+  //size (displayWidth, displayHeight, P3D); 
+  size(800, 600);
 
   RectShape player = new RectShape(plyr.plyrPos.x, plyr.plyrPos.y, 10, 10);
   rects.add(0, player);
@@ -51,9 +52,9 @@ void draw()
 {
   background(100, 100, 170);
 
-  camera(plyr.plyrPos.x, plyr.plyrPos.y, (height/2.0) / tan(PI*30.0 / 180.0), // eyeX, eyeY, eyeZ
+ /* camera(plyr.plyrPos.x, plyr.plyrPos.y, (height/2.0) / tan(PI*30.0 / 180.0), // eyeX, eyeY, eyeZ
    plyr.plyrPos.x, plyr.plyrPos.y, 0, // centerX, centerY, centerZ
-   0, 1, 0); // upX, upY, upZ
+   0, 1, 0); // upX, upY, upZ */
    
   plyr.grounded =false;
 
@@ -122,7 +123,9 @@ void draw()
     if (rect4.collides(rect2))
     {
       plyr.grounded=true;
+      plyr.gravity=0;
       plyr.plyrPos.y=rect2.position.y+rect2.h-(plyr.h+rect4.h);
+      println(plyr.grounded);
     }
 
     if (rect5.collides(rect2))
@@ -204,6 +207,10 @@ void draw()
         }
       }
     }
+  }
+  if( mousePressed )
+  {
+    plyr.plyrPos.y=mouseY;
   }
 }
 

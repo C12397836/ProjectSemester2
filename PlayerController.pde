@@ -1,9 +1,10 @@
 class PlayerController
 {
   PVector plyrPos= new PVector();
-  PVector velocity= new PVector();
   PVector scale= new PVector();
-  int gravity, angle, speed;
+  int  angle, speed;
+  float gravity, velocity;
+  int terminalVelocity= 10;
   boolean[] keys;
   float moveSpeed, jumpHeight;
   int h, w;
@@ -14,6 +15,7 @@ class PlayerController
     plyrPos.x=20;
     plyrPos.y=200;
     gravity=3;
+    velocity=0.1;
     keys=new boolean[4];
     keys[0]=false;
     keys[1]=false;
@@ -26,8 +28,6 @@ class PlayerController
     angle=30;
     scale.x=cos(angle);
     scale.y=sin(angle);
-    velocity.x= scale.x*moveSpeed;
-    velocity.y= scale.y*moveSpeed;
   }
 
   public PlayerController(int x, int y)
@@ -66,9 +66,20 @@ class PlayerController
       {
         //plyrPos.add(velocity);
       }
-      doubleJump=true;
+      doubleJump=true; //should be true
     }
+    
+    if(!grounded)
+    {
+      if(gravity<=terminalVelocity)
+      {
+         gravity+=velocity; 
+      }
+    }
+    
+    println(gravity);
   }
+  
   void climb()
   {
     plyrPos.y-=gravity;
