@@ -141,7 +141,7 @@ void draw()
   for (int j = 1; j < rects.size (); j ++)
   {
     RectShape rect2 = rects.get(j);
-    rect2.display();
+    //rect2.display();
     if (rect1.collides(rect2))
     {        
       if (plyr.plyrPos.y>rects.get(j).position.y+rects.get(j).h-10)
