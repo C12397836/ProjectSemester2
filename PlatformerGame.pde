@@ -242,7 +242,7 @@ void draw()
       {
         if (blockHeight[i]>0)
         {
-            blockHeight[i]-=blockWidth/5;
+            blockHeight[i]=plyr.dig(blockHeight[i]);
         }
       }
     }
@@ -262,7 +262,10 @@ void keyPressed()
   if (key==' ')
     plyr.keys[2]=true;
   if (key== 's')
+  {
+    plyr.digging=true;
     plyr.keys[3]=true;
+  }
 }
 
 void keyReleased()
@@ -274,6 +277,9 @@ void keyReleased()
   if (key==' ')
     plyr.keys[2]=false;
   if (key== 's')
+  {
+    plyr.digging=false;
     plyr.keys[3]=false;
+  }
 }
 

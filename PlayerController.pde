@@ -8,7 +8,7 @@ class PlayerController
   boolean[] keys;
   float moveSpeed, jumpHeight;
   int h, w;
-  boolean grounded, doubleJump;
+  boolean grounded, doubleJump, digging;
 
   public PlayerController()
   {
@@ -28,6 +28,7 @@ class PlayerController
     angle=30;
     scale.x=cos(angle);
     scale.y=sin(angle);
+    digging=false;
   }
 
   public PlayerController(int x, int y)
@@ -90,6 +91,17 @@ class PlayerController
     {  
       plyrPos.y--;
     }
+  }
+  
+  int dig(int blockHeight)
+  {
+    if(digging)
+    {
+      blockHeight-=blockWidth;
+      digging=false;
+    }
+    return blockHeight;
+    
   }
   int getRandom()
   {
