@@ -143,8 +143,7 @@ void draw()
     RectShape rect2 = rects.get(j);
     rect2.display();
     if (rect1.collides(rect2))
-    {     
-      text("Working", 100, 200);   
+    {        
       if (plyr.plyrPos.y>rects.get(j).position.y+rects.get(j).h-10)
       {
         plyr.plyrPos.y=rects.get(j).position.y+rects.get(j).h-10;
@@ -157,7 +156,6 @@ void draw()
       if (rect3.position.x+rect3.w == rect2.position.x)
       {
         plyr.climb();
-        text("HERE", 150, 150);
 
         if (rect3.position.y <=rect2.position.y+rect2.h)
         {
@@ -178,7 +176,6 @@ void draw()
       if (int(rect5.position.x+1) == rect2.position.x+rect2.w)
       {
         plyr.climb();
-        text("HERE", rect5.position.x, rect5.position.y+10);
 
         if (rect5.position.y <=rect2.position.y+rect2.h)
         {
@@ -232,7 +229,6 @@ void draw()
       }
       if((plyr.plyrPos.x>= i*blockWidth && plyr.plyrPos.x< (i*blockWidth)+blockWidth) && map.bla.get(i)==water)
       {
-        text("bsgs" , i*blockWidth, blockHeight[i]+20);
         if(blockHeight[i]>blockWidth)
         {
           plyr.plyrPos.y-=0.9;
@@ -242,7 +238,6 @@ void draw()
 
     if ((plyr.plyrPos.x>= i*blockWidth && plyr.plyrPos.x< (i*blockWidth)+blockWidth) && plyr.keys[3])
     {
-      text("dfgdgre", 200, 100);
       if (map.bla.get(i)!=water)
       {
         if (blockHeight[i]>0)
