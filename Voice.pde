@@ -1,7 +1,6 @@
 import ddf.minim.AudioInput;
 import ddf.minim.Minim;
 import ddf.minim.analysis.FFT;
-
 class Voice
 {
   Minim minim;
@@ -10,16 +9,12 @@ class Voice
   float max;
   
   int sampleRate = 44100;
-  FFT fft;
   
   public void load()
   {
-    size(2048, 500);
-    smooth();
     minim = new Minim(this);
     
-    in = minim.getLineIn(Minim.MONO, width, sampleRate, 16);
-    fft = new FFT(width, sampleRate);
+    in = minim.getLineIn(Minim.MONO, 10, sampleRate, 16);
     min = Float.MAX_VALUE;
     max = Float.MIN_VALUE;
   }
@@ -40,8 +35,8 @@ class Voice
         max = sample;
       }
       sample *= 100.0;
+      println(sample);
     }
-    println(sample);
   }
   
 }

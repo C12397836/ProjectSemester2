@@ -1,3 +1,4 @@
+
 PImage ground;
 PImage water;
 PImage p;
@@ -12,7 +13,7 @@ int[] num= new int[map.levelSize];
 int[] blockHeight= new int[map.levelSize];
 
 TimeDelta t= new TimeDelta();
-
+Voice v= new Voice();
 void setup()
 {
   //size (displayWidth, displayHeight, P3D); 
@@ -58,6 +59,8 @@ void draw()
    
   plyr.grounded =false;
 
+  v.load();
+  v.update();
   t.update();
   text(" "+ t.second, width-50, 50);
 
@@ -125,7 +128,6 @@ void draw()
       plyr.grounded=true;
       plyr.gravity=0;
       plyr.plyrPos.y=rect2.position.y+rect2.h-(plyr.h+rect4.h);
-      println(plyr.grounded);
     }
 
     if (rect5.collides(rect2))

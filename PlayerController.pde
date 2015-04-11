@@ -76,8 +76,6 @@ class PlayerController
          gravity+=velocity; 
       }
     }
-    
-    println(gravity);
   }
   
   void climb()
