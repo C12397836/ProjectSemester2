@@ -1,4 +1,15 @@
+import ddf.minim.AudioInput;
+import ddf.minim.Minim;
 
+
+  Minim minim;
+  AudioInput in;
+  float min;
+  float max;
+  
+  int sampleRate = 3600;
+  
+  
 PImage ground;
 PImage water;
 PImage p;
@@ -13,12 +24,19 @@ int[] num= new int[map.levelSize];
 int[] blockHeight= new int[map.levelSize];
 
 TimeDelta t= new TimeDelta();
-Voice v= new Voice();
+
 void setup()
 {
   //size (displayWidth, displayHeight, P3D); 
   size(800, 600);
-
+  
+    minim = new Minim(this);
+    
+    in = minim.getLineIn(Minim.MONO, 10, sampleRate, 16);
+    min = Float.MAX_VALUE;
+    max = Float.MIN_VALUE;
+    
+    
   RectShape player = new RectShape(plyr.plyrPos.x, plyr.plyrPos.y, 10, 10);
   rects.add(0, player);
 
@@ -57,10 +75,29 @@ void draw()
    plyr.plyrPos.x, plyr.plyrPos.y, 0, // centerX, centerY, centerZ
    0, 1, 0); // upX, upY, upZ */
    
+   for (int i = 0 ; i < in.bufferSize(); i ++)
+    {
+      float sample = in.left.get(i);
+      
+      if (sample < min)
+      {
+        min = sample;
+      }
+      
+      if (sample > max)
+      {
+        max = sample;
+      }
+      sample *= 1000.0;
+      println(abs(sample));
+      if(sample>400)
+      {
+         background(255,0,0); 
+      }
+    }
+    
   plyr.grounded =false;
 
-  v.load();
-  v.update();
   t.update();
   text(" "+ t.second, width-50, 50);
 
