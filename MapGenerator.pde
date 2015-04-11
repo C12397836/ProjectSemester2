@@ -1,6 +1,6 @@
 class MapGenerator
 {
-  int levelSize=15;
+  int levelSize=100;
   int[] blockHeight = new int[levelSize+1];
   ArrayList<PImage> bla = new ArrayList();
 

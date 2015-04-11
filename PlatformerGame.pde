@@ -27,8 +27,8 @@ TimeDelta t= new TimeDelta();
 
 void setup()
 {
-  //size (displayWidth, displayHeight, P3D); 
-  size(800, 600);
+  size (displayWidth, displayHeight, P3D); 
+  //size(800, 600);
   
     minim = new Minim(this);
     
@@ -71,9 +71,9 @@ void draw()
 {
   background(100, 100, 170);
 
- /* camera(plyr.plyrPos.x, plyr.plyrPos.y, (height/2.0) / tan(PI*30.0 / 180.0), // eyeX, eyeY, eyeZ
+   camera(plyr.plyrPos.x, plyr.plyrPos.y, (height/2.0) / tan(PI*30.0 / 180.0), // eyeX, eyeY, eyeZ
    plyr.plyrPos.x, plyr.plyrPos.y, 0, // centerX, centerY, centerZ
-   0, 1, 0); // upX, upY, upZ */
+   0, 1, 0); // upX, upY, upZ 
    
    for (int i = 0 ; i < in.bufferSize(); i ++)
     {
