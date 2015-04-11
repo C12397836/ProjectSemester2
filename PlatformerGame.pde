@@ -89,11 +89,9 @@ void draw()
         max = sample;
       }
       sample *= 1000.0;
-      println(abs(sample));
-      if(sample>400)
-      {
-         background(255,0,0); 
-      }
+      //println(abs(in.left.get(int(random(0,in.bufferSize()))))*1000);
+      //background(abs(in.left.get(int(random(0,in.bufferSize()))))*1000,abs(in.left.get(int(random(0,in.bufferSize()))))*1000, abs(in.left.get(int(random(0,in.bufferSize()))))*1000); 
+      
     }
     
   plyr.grounded =false;
@@ -116,10 +114,17 @@ void draw()
 
   for (int i =0; i<rects.size ()-1; i++)
   {
-    if (i==0)
+    if (i!=0)
     {
-    } else {
-      rects.get(i).h=-blockHeight[i-1];
+      if(map.bla.get(i-1)==water)
+      {
+        rects.get(i).h=-blockHeight[i-1]+20;
+      }
+      if(map.bla.get(i-1)!=water)
+      {
+        rects.get(i).h=-blockHeight[i-1];
+      }
+      println(i + " = " + rects.get(i).h +" and "+blockHeight[i-1]); 
     }
   }
 
@@ -193,7 +198,7 @@ void draw()
     num[i]=(blockHeight[i]/blockWidth)+1;
     for (int j=0; j<num[i]; j++)
     {
-      image(map.bla.get(i), i*blockWidth, 390-(blockWidth*j-1), blockWidth, blockWidth);
+       image(map.bla.get(i), i*blockWidth, 390-(blockWidth*j-1), blockWidth, blockWidth);
     }
   }
 
@@ -211,7 +216,7 @@ void draw()
         {
           if (map.bla.get(i+1)!=water)
           {
-            blockHeight[i]=blockHeight[i+1];
+            blockHeight[i]=blockHeight[i+1]-10;
           } else {
             blockHeight[i]=blockHeight[i+1];
           }
@@ -219,7 +224,7 @@ void draw()
         {
           if (map.bla.get(i-1)!=water)
           {
-            blockHeight[i]=blockHeight[i-1];
+            blockHeight[i]=blockHeight[i-1]-10;
           } else {
             blockHeight[i]=blockHeight[i-1];
           }
@@ -230,9 +235,9 @@ void draw()
         text("bsgs" , i*blockWidth, blockHeight[i]+20);
         if(blockHeight[i]>blockWidth)
         {
-          plyr.plyrPos.y-=0.01;
+          plyr.plyrPos.y-=0.9;
         }
-      }
+      }  
     }
 
     if ((plyr.plyrPos.x>= i*blockWidth && plyr.plyrPos.x< (i*blockWidth)+blockWidth) && plyr.keys[3])
