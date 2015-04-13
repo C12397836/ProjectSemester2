@@ -14,7 +14,7 @@ class Treasure
 
   void update()
   {
-    rect(pos.x, pos.y, 10, 10);
+    ellipse(pos.x, pos.y, 10, 10);
   }
   void randomise(int levelSize, int [] blockHeight)
   {

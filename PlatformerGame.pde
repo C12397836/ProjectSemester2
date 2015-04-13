@@ -9,7 +9,7 @@ import ddf.minim.Minim;
   
   int sampleRate = 3600;
   
-  
+ 
 PImage ground;
 PImage water;
 PImage p;
@@ -17,6 +17,7 @@ PImage p;
 int blockWidth;
 
 ArrayList<RectShape> rects = new ArrayList<RectShape>();
+ArrayList<CircleShape> cir = new ArrayList<CircleShape>();
 PlayerController plyr = new PlayerController(20, 100);
 MapGenerator map = new MapGenerator();
 
@@ -26,7 +27,7 @@ int[] num= new int[map.levelSize];
 int[] blockHeight= new int[map.levelSize];
 void setup()
 {
-  size (displayWidth-700, displayHeight-400, P3D); 
+  size (displayWidth-200, displayHeight-200, P3D); 
   
     minim = new Minim(this);
     
@@ -69,7 +70,6 @@ void setup()
 } 
 
 Treasure treasure = new Treasure();
-
 void draw()
 {
   background(100, 100, 170);
@@ -82,7 +82,7 @@ void draw()
     num=null;
     setup();
   }*/
-  println(map.bla.get(treasure.r));
+  //println(map.bla.get(treasure.r));
   if(map.bla.get(treasure.r)==water||map.bla.get(treasure.r)==null)
   {
     
@@ -90,6 +90,7 @@ void draw()
     treasure.randomise(map.levelSize, blockHeight);
   }
   treasure.update();
+  
   //map.mapCreate();
    camera(plyr.plyrPos.x, plyr.plyrPos.y, (height/2.0) / tan(PI*30.0 / 180.0), // eyeX, eyeY, eyeZ
    plyr.plyrPos.x, plyr.plyrPos.y, 0, // centerX, centerY, centerZ
@@ -111,9 +112,13 @@ void draw()
       sample *= 1000.0;
       //println(abs(in.left.get(int(random(0,in.bufferSize()))))*1000);
       //background(abs(in.left.get(int(random(0,in.bufferSize()))))*1000,abs(in.left.get(int(random(0,in.bufferSize()))))*1000, abs(in.left.get(int(random(0,in.bufferSize()))))*1000); 
-      
+      if(sample>400)
+      {
+        
+      }
     }
     
+    plyr.radarPulse();
   plyr.grounded =false;
 
   t.update();
@@ -147,17 +152,27 @@ void draw()
       //println(i + " = " + rects.get(i).h +" and "+blockHeight[i-1]); 
     }
   }
-
   RectShape plyrCollide = new RectShape(plyr.plyrPos.x+plyr.w, plyr.plyrPos.y+(plyr.h/2), 4, 4);
   RectShape plyrGround = new RectShape(plyr.plyrPos.x+(plyr.w/2), plyr.plyrPos.y+plyr.h, 4, 4);
   RectShape plyrCollideBack = new RectShape(plyr.plyrPos.x, plyr.plyrPos.y+(plyr.h/2), 4, 4);
-
+  CircleShape radar = new CircleShape(plyr.plyrPos.x, plyr.plyrPos.y, plyr.radar);
+  CircleShape treasure = new CircleShape(100, 100, 10);
+  
   RectShape rect1 = rects.get(0);
   RectShape rect3 = plyrCollide;
   RectShape rect4 = plyrGround;
   RectShape rect5 = plyrCollideBack;
+  
+  CircleShape cir1 = radar;
+  CircleShape cir2 = treasure;
 
   //rect1.display();
+  
+  if(cir1.collides(cir2))
+  {
+    background(255,0,0);
+  }
+  
   for (int j = 1; j < rects.size (); j ++)
   {
     RectShape rect2 = rects.get(j);
@@ -299,4 +314,5 @@ void keyReleased()
     plyr.keys[3]=false;
   }
 }
+
 

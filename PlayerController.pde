@@ -3,7 +3,7 @@ class PlayerController
   PVector plyrPos= new PVector();
   PVector scale= new PVector();
   int  angle, speed;
-  float gravity, velocity;
+  float gravity, velocity,radar;
   int terminalVelocity= 10;
   boolean[] keys;
   float moveSpeed, jumpHeight;
@@ -108,6 +108,21 @@ class PlayerController
   {
     int num=(int)random(2, 8);
     return num;
+  }
+  
+  void radarPulse()
+  {
+    noFill();
+    stroke(255,0,0);
+    if(radar<=500)
+    {
+      ellipse(plyr.plyrPos.x, plyr.plyrPos.y, radar, radar);
+      radar+=5;
+    }
+    if(radar>=500)
+    {
+      radar=0;
+    }
   }
 }
 
