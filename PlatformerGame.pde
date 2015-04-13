@@ -169,6 +169,17 @@ void draw()
       plyr.grounded=true;
       plyr.gravity=0;
       plyr.plyrPos.y=rect2.position.y+rect2.h-(plyr.h+rect4.h);
+      
+        if (plyr.keys[3])
+        {
+          if (map.bla.get(j-1)!=water)
+          {
+            if (blockHeight[j-1]>0)
+            {
+                blockHeight[j-1]=plyr.dig(blockHeight[j-1]);
+            }
+          }
+        }
     }
 
     if (rect5.collides(rect2))
@@ -214,7 +225,7 @@ void draw()
         {
           if (map.bla.get(i+1)!=water)
           {
-            blockHeight[i]=blockHeight[i+1]-10;
+            blockHeight[i]=blockHeight[i+1];
           } else {
             blockHeight[i]=blockHeight[i+1];
           }
@@ -222,7 +233,7 @@ void draw()
         {
           if (map.bla.get(i-1)!=water)
           {
-            blockHeight[i]=blockHeight[i-1]-10;
+            blockHeight[i]=blockHeight[i-1];
           } else {
             blockHeight[i]=blockHeight[i-1];
           }
@@ -235,17 +246,6 @@ void draw()
           plyr.plyrPos.y-=0.9;
         }
       }  
-    }
-
-    if ((plyr.plyrPos.x>= i*blockWidth && plyr.plyrPos.x< (i*blockWidth)+blockWidth) && plyr.keys[3])
-    {
-      if (map.bla.get(i)!=water)
-      {
-        if (blockHeight[i]>0)
-        {
-            blockHeight[i]=plyr.dig(blockHeight[i]);
-        }
-      }
     }
   }
 }
