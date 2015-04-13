@@ -5,11 +5,6 @@ class Treasure
   int r;
   int r2;
 
-  public Treasure(int levelSize, int [] blockHeight)
-  {
-    r =int(random(0, levelSize));
-    r2=int(random(0, blockHeight[r]));
-  }
 
   void create()
   {
@@ -20,6 +15,11 @@ class Treasure
   void update()
   {
     rect(pos.x, pos.y, 10, 10);
+  }
+  void randomise(int levelSize, int [] blockHeight)
+  {
+    r =int(random(0, levelSize));
+    r2=int(random(0, blockHeight[r]));
   }
 }
 

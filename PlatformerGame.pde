@@ -26,7 +26,7 @@ int[] num= new int[map.levelSize];
 int[] blockHeight= new int[map.levelSize];
 void setup()
 {
-  size (displayWidth, displayHeight, P3D); 
+  size (displayWidth-700, displayHeight-400, P3D); 
   
     minim = new Minim(this);
     
@@ -62,10 +62,13 @@ void setup()
     RectShape ground = new RectShape(i*blockWidth, 390, blockWidth, -blockHeight[i]);
     rects.add(ground);
   }
+  
+  treasure.randomise(map.levelSize, blockHeight);
   treasure.create();
+  println(treasure.r);
 } 
 
-Treasure treasure = new Treasure(map.levelSize, blockHeight);
+Treasure treasure = new Treasure();
 
 void draw()
 {
@@ -79,7 +82,13 @@ void draw()
     num=null;
     setup();
   }*/
-  
+  println(map.bla.get(treasure.r));
+  if(map.bla.get(treasure.r)==water||map.bla.get(treasure.r)==null)
+  {
+    
+    println("gdhafdhsgesgggfdgfdfdhghfgdhfdjsadfihdsu");
+    treasure.randomise(map.levelSize, blockHeight);
+  }
   treasure.update();
   //map.mapCreate();
    camera(plyr.plyrPos.x, plyr.plyrPos.y, (height/2.0) / tan(PI*30.0 / 180.0), // eyeX, eyeY, eyeZ
