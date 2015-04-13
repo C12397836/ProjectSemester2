@@ -41,5 +41,9 @@ class MapGenerator
     int num=(int)random(1, 3);
     return num;
   }
+  void clearMap()
+  {
+    bla.clear();
+  }
 }
 

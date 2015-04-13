@@ -20,15 +20,13 @@ ArrayList<RectShape> rects = new ArrayList<RectShape>();
 PlayerController plyr = new PlayerController(20, 100);
 MapGenerator map = new MapGenerator();
 
-int[] num= new int[map.levelSize];
-int[] blockHeight= new int[map.levelSize];
-
 TimeDelta t= new TimeDelta();
 
+int[] num= new int[map.levelSize];
+int[] blockHeight= new int[map.levelSize];
 void setup()
 {
   size (displayWidth, displayHeight, P3D); 
-  //size(800, 600);
   
     minim = new Minim(this);
     
@@ -64,13 +62,25 @@ void setup()
     RectShape ground = new RectShape(i*blockWidth, 390, blockWidth, -blockHeight[i]);
     rects.add(ground);
   }
+  treasure.create();
 } 
 
+Treasure treasure = new Treasure(map.levelSize, blockHeight);
 
 void draw()
 {
   background(100, 100, 170);
 
+  //New Level Reloader doesnt work >>
+  /*if(plyr.plyrPos.x>= (blockWidth*(map.levelSize-5))-blockWidth)
+  {
+    map.clearMap();
+    blockHeight=null;
+    num=null;
+    setup();
+  }*/
+  
+  treasure.update();
   //map.mapCreate();
    camera(plyr.plyrPos.x, plyr.plyrPos.y, (height/2.0) / tan(PI*30.0 / 180.0), // eyeX, eyeY, eyeZ
    plyr.plyrPos.x, plyr.plyrPos.y, 0, // centerX, centerY, centerZ
@@ -248,6 +258,7 @@ void draw()
       }  
     }
   }
+  
 }
 
 void keyPressed()
