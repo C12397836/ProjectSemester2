@@ -170,7 +170,7 @@ void draw()
   
   if(cir1.collides(cir2))
   {
-    background(255,0,0);
+    text("Colliding" , plyr.plyrPos.x+20, plyr.plyrPos.y);
   }
   
   for (int j = 1; j < rects.size (); j ++)
