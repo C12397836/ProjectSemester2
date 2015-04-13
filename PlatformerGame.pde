@@ -71,6 +71,7 @@ void draw()
 {
   background(100, 100, 170);
 
+  //map.mapCreate();
    camera(plyr.plyrPos.x, plyr.plyrPos.y, (height/2.0) / tan(PI*30.0 / 180.0), // eyeX, eyeY, eyeZ
    plyr.plyrPos.x, plyr.plyrPos.y, 0, // centerX, centerY, centerZ
    0, 1, 0); // upX, upY, upZ 
@@ -124,7 +125,7 @@ void draw()
       {
         rects.get(i).h=-blockHeight[i-1];
       }
-      println(i + " = " + rects.get(i).h +" and "+blockHeight[i-1]); 
+      //println(i + " = " + rects.get(i).h +" and "+blockHeight[i-1]); 
     }
   }
 
@@ -246,10 +247,6 @@ void draw()
         }
       }
     }
-  }
-  if( mousePressed )
-  {
-    plyr.plyrPos.y=mouseY;
   }
 }
 

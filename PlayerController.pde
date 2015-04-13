@@ -23,7 +23,7 @@ class PlayerController
     moveSpeed=1;
     h=20;
     w=20;
-    jumpHeight=5;
+    jumpHeight=10;
     grounded=false;
     angle=30;
     scale.x=cos(angle);
@@ -62,12 +62,13 @@ class PlayerController
     if ( keys[2]==true && !doubleJump && !grounded) 
     {
       plyrPos.y-= jumpHeight;
+      doubleJump=true; //should be true
       //plyrPos.add(velocity);
       if (keys[1]==true)
       {
         //plyrPos.add(velocity);
       }
-      doubleJump=true; //should be true
+      
     }
     
     if(!grounded)
