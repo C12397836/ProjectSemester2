@@ -15,6 +15,11 @@ PImage water;
 PImage p;
 PImage background;
 PImage gem;
+PImage start;
+PImage logo;
+PImage clickStart;
+PImage end;
+PImage death;
 PFont font;
 
 int blockWidth;
@@ -59,7 +64,12 @@ void setup()
   p= loadImage("p.png");
   background= loadImage("background.png");
   gem =loadImage("gem.png");
-
+  start=loadImage("start.jpg");
+  logo = loadImage("logo.png");
+  clickStart = loadImage("clickStart.png");
+  end = loadImage("endGame.jpg");
+  death = loadImage("death.png");
+  
   blockWidth=100;
 
   map.mapCreate();
