@@ -8,7 +8,7 @@ class PlayerController
   boolean[] keys;
   float moveSpeed, jumpHeight;
   int h, w;
-  boolean grounded, doubleJump, digging;
+  boolean grounded, doubleJump, digging, pulse;
 
   public PlayerController()
   {
@@ -29,6 +29,7 @@ class PlayerController
     scale.x=cos(angle);
     scale.y=sin(angle);
     digging=false;
+    pulse=false;
   }
 
   public PlayerController(int x, int y)
@@ -121,6 +122,7 @@ class PlayerController
     }
     if(radar>=500)
     {
+      pulse=false;
       radar=0;
     }
   }

@@ -112,13 +112,17 @@ void draw()
       sample *= 1000.0;
       //println(abs(in.left.get(int(random(0,in.bufferSize()))))*1000);
       //background(abs(in.left.get(int(random(0,in.bufferSize()))))*1000,abs(in.left.get(int(random(0,in.bufferSize()))))*1000, abs(in.left.get(int(random(0,in.bufferSize()))))*1000); 
+      
       if(sample>400)
       {
-        
+        plyr.pulse=true;
       }
+      
     }
-    
-    plyr.radarPulse();
+    if(plyr.pulse)
+    {
+      plyr.radarPulse();
+    }
   plyr.grounded =false;
 
   t.update();
