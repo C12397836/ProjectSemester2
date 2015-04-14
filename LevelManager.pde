@@ -9,11 +9,15 @@ class LevelManager
   
   void startScreen()
   {
+    textSize(40);
+    textFont(font);
+    textAlign(CENTER, CENTER);
     background(0);
     text("Start Screen", width/2, height/2);
+    textSize(20);
     if (mousePressed)
     {
-      text("Loading", width/2, height/2+100);
+      text("Loading...", width/2, height/2+200);
       lvl=5;
     }
   }
@@ -23,20 +27,20 @@ class LevelManager
     camera();
     textSize(40);
     textFont(font);
+    stroke(255);
+    fill(255);
     textAlign(CENTER, CENTER);
     text("Death Screen", width/2, height/2);
-    
+    textSize(20);
     String lines[] = loadStrings("highscore.txt");
-    text("HighScore: Score " + int(lines[0]) + " Level "+ int(lines[1]), 100, 100);
-    println("HighScore: Score " + lines[0] + " Level "+ lines[1]);
-    if(plyr.loots> int(lines[0]) && plyr.level> int(lines[1]))
+    text("HighScore: Score " + int(lines[1]) + " Level "+ int(lines[2]), width/2, height/2+100);
+    println("HighScore: Score " + lines[1] + " Level "+ lines[2]);
+    if(plyr.loots> int(lines[1]) && plyr.level> int(lines[2]))
     {
       String score = " " + plyr.loots + " " + plyr.level;
       String[] list = split(score, ' ');
-      // Writes the strings to a file, each on a separate line
       saveStrings("C:/Paul/College/OOP/PlatformerGame/Data/highscore.txt", list);
     }
-    
     
     if (mousePressed)
     {
@@ -48,7 +52,15 @@ class LevelManager
   
   void newLevel()
   {
-      text("Loading", 100, 100);
+      fill(255);
+      textAlign(CENTER, CENTER);
+      textSize(20);
+      if(lvlMng.lvl>4)
+      {
+        fill(0,0,255);
+        text("Loading...", plyr.plyrPos.x, plyr.plyrPos.y+height/2-100);
+      }
+      text("Loading...", width/2, height/2+200);
       map.clearMap();
       rects.clear();
       setup();

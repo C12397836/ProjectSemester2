@@ -67,14 +67,14 @@ class PlayerController
       plyrPos.y-=jumpV;
       doubleJump=true; //should be true
       //plyrPos.add(velocity);
-      if (keys[1]==true)
+      /*if (keys[1]==true)
       {
         plyrPos.x+=jumpV/2;
       }
       if (keys[0]==true)
       {
         plyrPos.x-=jumpV/2;
-      }
+      }*/
       
     }
     

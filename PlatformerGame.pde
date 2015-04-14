@@ -98,11 +98,6 @@ void draw()
     image(background, -1000, -500, width+700, height+700);
     image(background, -1000, -500, width+700, height+700);
     
-    rect((blockWidth*(map.levelSize-1))-(blockWidth/2), blockHeight[map.levelSize-1], 50, 50);
-    if(plyr.plyrPos.x>(blockWidth*(map.levelSize-5))-(blockWidth/2) && plyr.plyrPos.x>(blockWidth*(map.levelSize-5))-(blockWidth/2)+50)
-    {
-      plyr.levelUp();
-    }
     //New Level Reloader doesnt work >>
     /*if(plyr.plyrPos.x>= (blockWidth*(map.levelSize-5))-blockWidth)
      {
@@ -176,14 +171,20 @@ void draw()
 
     image(p, plyr.plyrPos.x, plyr.plyrPos.y, plyr.w, plyr.h);
 
-
+    
     for (int i =0; i<rects.size ()-1; i++)
     {
       if (i!=0)
       {
         if (map.bla.get(i-1)==water)
         {
-          rects.get(i).h=-blockHeight[i-1]+20;
+          if(rects.get(i).h<=0)
+          {
+            rects.get(i).h=-blockHeight[i-1]+20;
+          }else
+          {
+            rects.get(i).h=-blockHeight[i-1];
+          }
         }
         if (map.bla.get(i-1)!=water)
         {
@@ -267,7 +268,8 @@ void draw()
       if (rect5.collides(rect2))
       {
         plyr.plyrPos.x+=plyr.moveSpeed;
-        if (rect5.position.x+1== rect2.position.x+rect2.w)
+        //println((rect5.position.x+2)+ " " +(rect2.position.x+rect2.w)); 
+        if ((rect5.position.x+2)== (rect2.position.x+rect2.w))
         {
           plyr.climb();
           if (rect5.position.y <=rect2.position.y+rect2.h)
@@ -359,8 +361,19 @@ void draw()
     {
       lvlMng.lvl=2;
     }
-    println("Level " +lvlMng.lvl);
     
+    strokeWeight(4);
+    line((blockWidth*(map.levelSize-2)), -1000, (blockWidth*(map.levelSize-2)), 5000);
+
+
+    if(plyr.plyrPos.x>(blockWidth*(map.levelSize-2))-(blockWidth/2) && plyr.plyrPos.x>(blockWidth*(map.levelSize-2))-(blockWidth/2)+50)
+    {
+      for(int i=0; i<10; i++)
+      {
+        text("LEVEL UP!", plyr.plyrPos.x, plyr.plyrPos.y);
+      }
+      plyr.levelUp();
+    }
   }
 }
 

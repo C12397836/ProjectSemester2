@@ -9,7 +9,7 @@ class MapGenerator
     blockHeight = new int[levelSize+1];
     bla.add(ground);
     bla.add(ground);
-    for (int i=0; i<levelSize; i++)
+    for (int i=0; i<levelSize-1; i++)
     {
       {
         int num = getRandom(); 
@@ -28,6 +28,7 @@ class MapGenerator
         }
       }
     }
+    bla.add(ground);
   }
 
   void update()
