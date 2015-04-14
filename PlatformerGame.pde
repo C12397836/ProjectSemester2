@@ -7,7 +7,7 @@ AudioInput in;
 float min;
 float max;
 
-int sampleRate = 3600;
+int sampleRate;
 
 
 PImage ground;
@@ -21,17 +21,23 @@ int blockWidth;
 ArrayList<RectShape> rects = new ArrayList<RectShape>();
 ArrayList<CircleShape> cir = new ArrayList<CircleShape>();
 ArrayList<Treasure> loot = new ArrayList<Treasure>();
-ArrayList<Bg> bg = new ArrayList<Bg>();
 PlayerController plyr = new PlayerController(20, 100);
 MapGenerator map = new MapGenerator();
 
 TimeDelta t= new TimeDelta();
 LevelManager lvlMng= new LevelManager();
 
-int[] num= new int[map.levelSize];
-int[] blockHeight= new int[map.levelSize];
+int[] num;
+int[] blockHeight;
+
+Treasure treasure = new Treasure();
+
 void setup()
 {
+  sampleRate = 3600;
+  num= new int[map.levelSize];
+  blockHeight= new int[map.levelSize];
+  
   size (displayWidth-200, displayHeight-200, P3D); 
   //size(500, 500);
 
@@ -76,7 +82,6 @@ void setup()
   treasure.create();
 } 
 
-Treasure treasure = new Treasure();
 void draw()
 {
   if (lvlMng.lvl==1)
@@ -92,6 +97,12 @@ void draw()
     background(100, 100, 170);
     image(background, -1000, -500, width+700, height+700);
     image(background, -1000, -500, width+700, height+700);
+    
+    rect((blockWidth*(map.levelSize-1))-(blockWidth/2), blockHeight[map.levelSize-1], 50, 50);
+    if(plyr.plyrPos.x>(blockWidth*(map.levelSize-5))-(blockWidth/2) && plyr.plyrPos.x>(blockWidth*(map.levelSize-5))-(blockWidth/2)+50)
+    {
+      plyr.levelUp();
+    }
     //New Level Reloader doesnt work >>
     /*if(plyr.plyrPos.x>= (blockWidth*(map.levelSize-5))-blockWidth)
      {
@@ -125,7 +136,7 @@ void draw()
     //map.mapCreate();
     camera(plyr.plyrPos.x, plyr.plyrPos.y, (height/2.0) / tan(PI*30.0 / 180.0), // eyeX, eyeY, eyeZ
     plyr.plyrPos.x, plyr.plyrPos.y, 0, // centerX, centerY, centerZ
-    0, 1, 0); // upX, upY, upZ 
+    0, 1, 0); // upX, upY, upZ */
 
     for (int i = 0; i < in.bufferSize (); i ++)
     {
@@ -335,10 +346,10 @@ void draw()
     textSize(40);
     textFont(font);
     textAlign(LEFT, TOP);
-    text("LEVEL: ", plyr.plyrPos.x-width/2, plyr.plyrPos.y-height/2);
+    text("LEVEL: "+ plyr.level, plyr.plyrPos.x-width/2, plyr.plyrPos.y-height/2);
     textAlign(RIGHT, TOP);
     text("TIME: "+t.second, plyr.plyrPos.x+width/2, plyr.plyrPos.y-height/2);
-    text("SCORE: "+plyr.score, plyr.plyrPos.x+width/2, plyr.plyrPos.y-height/2.5);
+    text("SCORE: "+plyr.loots, plyr.plyrPos.x+width/2, plyr.plyrPos.y-height/2.5);
     
     if (plyr.plyrPos.y > height)
     {
@@ -348,6 +359,8 @@ void draw()
     {
       lvlMng.lvl=2;
     }
+    println("Level " +lvlMng.lvl);
+    
   }
 }
 

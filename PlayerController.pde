@@ -6,7 +6,7 @@ class PlayerController
   int terminalVelocity= 10;
   boolean[] keys;
   float moveSpeed, jumpHeight;
-  int h, w, loots, score;
+  int h, w, loots, level;
   boolean grounded, doubleJump, digging, pulse, pulse2, alive;
 
   public PlayerController()
@@ -28,8 +28,8 @@ class PlayerController
     pulse=false;
     jumpV=blockWidth/2;
     loots=0;
-    score=0;
     alive=true;
+    level=1;
   }
 
   public PlayerController(int x, int y)
@@ -145,6 +145,11 @@ class PlayerController
       pulseSize=0;
     }
     strokeWeight(1);
+  }
+  void levelUp()
+  {
+    level++;
+    lvlMng.newLevel();
   }
 }
 

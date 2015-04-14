@@ -1,11 +1,12 @@
 class MapGenerator
 {
   int levelSize=10;
-  int[] blockHeight = new int[levelSize+1];
+  int[] blockHeight;
   ArrayList<PImage> bla = new ArrayList();
 
   void mapCreate()
   {
+    blockHeight = new int[levelSize+1];
     bla.add(ground);
     bla.add(ground);
     for (int i=0; i<levelSize; i++)

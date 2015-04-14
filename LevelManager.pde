@@ -23,8 +23,24 @@ class LevelManager
     text("Death Screen", width/2, height/2);
     if (mousePressed)
     {
-      lvl=5;
+      plyr.loots=0;
+      plyr.level=1;
+      newLevel();
     }
+  }
+  
+  void newLevel()
+  {
+      text("Loading", 100, 100);
+      map.clearMap();
+      rects.clear();
+      setup();
+      plyr.alive=true;
+      plyr.plyrPos.x=20;
+      plyr.plyrPos.y=100;
+      t.second=0;
+      
+      lvl=5;
   }
 }
 
