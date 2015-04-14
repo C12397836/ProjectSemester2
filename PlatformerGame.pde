@@ -18,6 +18,7 @@ int blockWidth;
 
 ArrayList<RectShape> rects = new ArrayList<RectShape>();
 ArrayList<CircleShape> cir = new ArrayList<CircleShape>();
+ArrayList<Treasure> loot = new ArrayList<Treasure>();
 PlayerController plyr = new PlayerController(20, 100);
 MapGenerator map = new MapGenerator();
 
@@ -92,6 +93,13 @@ void draw()
     treasure.create();
   }
   treasure.update();
+  if(treasure.unlooted)
+  {
+    loot.add(0, treasure);
+  }
+  else{
+    loot.remove(treasure);
+  }
   //println("Height " + map.blockHeight[treasure.r]);
   println("Block " +treasure.r);
   
@@ -161,6 +169,7 @@ void draw()
   RectShape plyrCollideBack = new RectShape(plyr.plyrPos.x, plyr.plyrPos.y+(plyr.h/2), 4, 4);
   CircleShape radar = new CircleShape(plyr.plyrPos.x, plyr.plyrPos.y, plyr.radar);
   CircleShape treasure1 = new CircleShape(treasure.pos.x, treasure.pos.y, 10);
+  CircleShape plyrCir = new CircleShape(plyr.plyrPos.x+plyr.w/2, plyr.plyrPos.y+(plyr.h/2), plyr.w);
   
   RectShape rect1 = rects.get(0);
   RectShape rect3 = plyrCollide;
@@ -169,6 +178,13 @@ void draw()
   
   CircleShape cir1 = radar;
   CircleShape cir2 = treasure1;
+  CircleShape cir3 = plyrCir;
+  
+  if(cir3.collides(cir2))
+  {
+    println("Looted");
+    treasure.unlooted=false;
+  }
 
   //rect1.display();
   

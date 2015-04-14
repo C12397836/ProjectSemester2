@@ -4,6 +4,7 @@ class Treasure
   PVector pos= new PVector();
   int r;
   int r2;
+  boolean unlooted;
   
   void randomise(int levelSize, int [] blockHeight)
   {
@@ -15,11 +16,15 @@ class Treasure
   {
     pos.x=(r*blockWidth)-blockWidth/2;
     pos.y=(390-blockWidth/2)-r2;
+    unlooted=true;
   }
 
   void update()
   {
-    ellipse(pos.x, pos.y, 10, 10);
+    if(unlooted)
+    {
+      ellipse(pos.x, pos.y, 10, 10);
+    }
   }
 }
 
