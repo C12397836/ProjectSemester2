@@ -15,7 +15,7 @@ class Treasure
   void create()
   {
     pos.x=(r*blockWidth)-blockWidth/2;
-    pos.y=(390-blockWidth/2)-r2;
+    pos.y=(390-(blockWidth/2))-r2;
     unlooted=true;
   }
 

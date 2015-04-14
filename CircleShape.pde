@@ -11,8 +11,8 @@ class CircleShape
   
   void display()
   {
-    stroke(255, 255, 255);
-    fill(0, 0, 255);
+    noStroke();
+    noFill();
     ellipse(position.x, position.y, radius/2 , radius/2 );
   }
   

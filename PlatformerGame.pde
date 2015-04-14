@@ -14,6 +14,7 @@ PImage ground;
 PImage water;
 PImage p;
 PImage background;
+PImage gem;
 PFont font;
 
 int blockWidth;
@@ -57,6 +58,7 @@ void setup()
 
   p= loadImage("p.png");
   background= loadImage("background.png");
+  gem =loadImage("gem.png");
 
   blockWidth=100;
 
@@ -84,6 +86,8 @@ void setup()
 
 void draw()
 {
+  noStroke();
+  
   if (lvlMng.lvl==1)
   {
     lvlMng.startScreen();
@@ -97,6 +101,7 @@ void draw()
     background(100, 100, 170);
     image(background, -1000, -500, width+700, height+700);
     image(background, -1000, -500, width+700, height+700);
+    //image(gem, treasure.pos.x-25, treasure.pos.y, 50, 50);
     
     //New Level Reloader doesnt work >>
     /*if(plyr.plyrPos.x>= (blockWidth*(map.levelSize-5))-blockWidth)
@@ -294,9 +299,9 @@ void draw()
       }
     }
 
-    plyrCollide.display();
+    /*plyrCollide.display();
     plyrGround.display();
-    plyrCollideBack.display();
+    plyrCollideBack.display();*/
 
     for (int i =0; i<map.bla.size ()-2; i++)
     { 
@@ -331,26 +336,30 @@ void draw()
         }
       }
     }
+    noStroke();
     if (plyr.pulse)
     {
       plyr.radarPulse();
     }
 
+    
     if (cir1.collides(cir2))
     {
       plyr.pulse2=true;
       if (plyr.pulse2)
       {
+        noStroke();
         plyr.blockPulse(cir2.position.x, cir2.position.y);
       }
     }
-
-    textSize(40);
+    
     textFont(font);
+    fill(0,0,255);
+    textSize(30);
     textAlign(LEFT, TOP);
-    text("LEVEL: "+ plyr.level, plyr.plyrPos.x-width/2, plyr.plyrPos.y-height/2);
+    text("LEVEL: "+ plyr.level, plyr.plyrPos.x-width/2, plyr.plyrPos.y-height/2+20);
     textAlign(RIGHT, TOP);
-    text("TIME: "+t.second, plyr.plyrPos.x+width/2, plyr.plyrPos.y-height/2);
+    text("TIME: "+t.second, plyr.plyrPos.x+width/2, plyr.plyrPos.y-height/2+20);
     text("SCORE: "+plyr.loots, plyr.plyrPos.x+width/2, plyr.plyrPos.y-height/2.5);
     
     if (plyr.plyrPos.y > height)
@@ -363,6 +372,7 @@ void draw()
     }
     
     strokeWeight(4);
+    stroke(255);
     line((blockWidth*(map.levelSize-2)), -1000, (blockWidth*(map.levelSize-2)), 5000);
 
 
@@ -370,6 +380,7 @@ void draw()
     {
       for(int i=0; i<10; i++)
       {
+        textSize(40);
         text("LEVEL UP!", plyr.plyrPos.x, plyr.plyrPos.y);
       }
       plyr.levelUp();
