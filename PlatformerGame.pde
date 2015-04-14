@@ -101,7 +101,7 @@ void draw()
     background(100, 100, 170);
     image(background, -1000, -500, width+700, height+700);
     image(background, -1000, -500, width+700, height+700);
-    //image(gem, treasure.pos.x-25, treasure.pos.y, 50, 50);
+    //image(gem, treasure.pos.x-25, treasure.pos.y, 20, 20);
     
     //New Level Reloader doesnt work >>
     /*if(plyr.plyrPos.x>= (blockWidth*(map.levelSize-5))-blockWidth)
