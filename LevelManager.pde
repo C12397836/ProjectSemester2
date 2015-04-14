@@ -6,6 +6,7 @@ class LevelManager
   {
     lvl=1;
   }
+  
   void startScreen()
   {
     background(0);
@@ -18,7 +19,7 @@ class LevelManager
   void deathScreen()
   {
     background(0);
-    text("Start Screen", width/2, height/2);
+    text("Death Screen", width/2, height/2);
     if (mousePressed)
     {
       lvl=5;

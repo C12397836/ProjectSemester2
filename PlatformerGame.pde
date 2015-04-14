@@ -74,7 +74,6 @@ void setup()
 
   treasure.randomise(map.bla.size(), blockHeight);
   treasure.create();
-  println(treasure.r);
 } 
 
 Treasure treasure = new Treasure();
@@ -83,10 +82,12 @@ void draw()
   if (lvlMng.lvl==1)
   {
     lvlMng.startScreen();
-  } else if (lvlMng.lvl==2)
+  } 
+  else if (lvlMng.lvl==2)
   {
     lvlMng.deathScreen();
-  } else
+  } 
+  else
   {
     background(100, 100, 170);
     image(background, -1000, -500, width+700, height+700);
@@ -339,6 +340,15 @@ void draw()
     textAlign(RIGHT, TOP);
     text("TIME: "+t.second, plyr.plyrPos.x+width/2, plyr.plyrPos.y-height/2);
     text("SCORE: "+plyr.score, plyr.plyrPos.x+width/2, plyr.plyrPos.y-height/2.5);
+    
+    if (plyr.plyrPos.y > height)
+    {
+      plyr.alive=false;
+    }
+    if(plyr.alive==false)
+    {
+      lvlMng.lvl=2;
+    }
   }
 }
 

@@ -7,7 +7,7 @@ class PlayerController
   boolean[] keys;
   float moveSpeed, jumpHeight;
   int h, w, loots, score;
-  boolean grounded, doubleJump, digging, pulse, pulse2;
+  boolean grounded, doubleJump, digging, pulse, pulse2, alive;
 
   public PlayerController()
   {
@@ -29,6 +29,7 @@ class PlayerController
     jumpV=blockWidth/2;
     loots=0;
     score=0;
+    alive=true;
   }
 
   public PlayerController(int x, int y)
