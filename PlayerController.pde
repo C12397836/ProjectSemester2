@@ -115,6 +115,7 @@ class PlayerController
   void radarPulse()
   {
     noFill();
+    strokeWeight(3);
     stroke(20,255,0);
     if(radar<=500)
     {
@@ -126,12 +127,14 @@ class PlayerController
       pulse=false;
       radar=0;
     }
+    strokeWeight(1);
   }
   void blockPulse(float posx, float posy)
   {
     noFill();
+    strokeWeight(3);
     stroke(255,0,0);
-    ellipse(posx, posy, pulseSize, pulseSize);
+    ellipse(posx+ blockWidth*int(random(-3,3)), posy + blockWidth*int(random(-3,3)), pulseSize, pulseSize);
     pulseSize+=10;
     
     if(pulseSize>=200)
@@ -139,6 +142,7 @@ class PlayerController
       pulse2=false;
       pulseSize=0;
     }
+    strokeWeight(1);
   }
 }
 
