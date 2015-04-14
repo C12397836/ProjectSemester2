@@ -99,6 +99,9 @@ void draw()
   }
   else{
     loot.remove(treasure);
+    treasure.randomise(map.bla.size(), blockHeight);
+    treasure.create();
+    treasure.unlooted=true;
   }
   //println("Height " + map.blockHeight[treasure.r]);
   println("Block " +treasure.r);
@@ -183,9 +186,14 @@ void draw()
   if(cir3.collides(cir2))
   {
     println("Looted");
+    if(treasure.unlooted)
+    {
+      plyr.loots++;
+    }
     treasure.unlooted=false;
   }
 
+  println(plyr.loots);
   //rect1.display();
   
   for (int j = 1; j < rects.size (); j ++)

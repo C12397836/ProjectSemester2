@@ -6,7 +6,7 @@ class PlayerController
   int terminalVelocity= 10;
   boolean[] keys;
   float moveSpeed, jumpHeight;
-  int h, w;
+  int h, w, loots;
   boolean grounded, doubleJump, digging, pulse, pulse2;
 
   public PlayerController()
@@ -26,8 +26,8 @@ class PlayerController
     grounded=false;
     digging=false;
     pulse=false;
-    pulse=false;
     jumpV=blockWidth/2;
+    loots=0;
   }
 
   public PlayerController(int x, int y)
