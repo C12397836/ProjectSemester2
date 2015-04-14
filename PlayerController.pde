@@ -3,12 +3,12 @@ class PlayerController
   PVector plyrPos= new PVector();
   PVector scale= new PVector();
   int  angle, speed;
-  float gravity, velocity,radar;
+  float gravity, velocity,radar, pulseSize;
   int terminalVelocity= 10;
   boolean[] keys;
   float moveSpeed, jumpHeight;
   int h, w;
-  boolean grounded, doubleJump, digging, pulse;
+  boolean grounded, doubleJump, digging, pulse, pulse2;
 
   public PlayerController()
   {
@@ -29,6 +29,7 @@ class PlayerController
     scale.x=cos(angle);
     scale.y=sin(angle);
     digging=false;
+    pulse=false;
     pulse=false;
   }
 
@@ -114,7 +115,7 @@ class PlayerController
   void radarPulse()
   {
     noFill();
-    stroke(255,0,0);
+    stroke(20,255,0);
     if(radar<=500)
     {
       ellipse(plyr.plyrPos.x, plyr.plyrPos.y, radar, radar);
@@ -124,6 +125,19 @@ class PlayerController
     {
       pulse=false;
       radar=0;
+    }
+  }
+  void blockPulse(float posx, float posy)
+  {
+    noFill();
+    stroke(255,0,0);
+    ellipse(posx, posy, pulseSize, pulseSize);
+    pulseSize+=10;
+    
+    if(pulseSize>=200)
+    {
+      pulse2=false;
+      pulseSize=0;
     }
   }
 }

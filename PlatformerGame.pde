@@ -123,10 +123,6 @@ void draw()
       }
       
     }
-    if(plyr.pulse)
-    {
-      plyr.radarPulse();
-    }
   plyr.grounded =false;
 
   t.update();
@@ -164,7 +160,7 @@ void draw()
   RectShape plyrGround = new RectShape(plyr.plyrPos.x+(plyr.w/2), plyr.plyrPos.y+plyr.h, 4, 4);
   RectShape plyrCollideBack = new RectShape(plyr.plyrPos.x, plyr.plyrPos.y+(plyr.h/2), 4, 4);
   CircleShape radar = new CircleShape(plyr.plyrPos.x, plyr.plyrPos.y, plyr.radar);
-  CircleShape treasure = new CircleShape(100, 100, 10);
+  CircleShape treasure1 = new CircleShape(treasure.pos.x, treasure.pos.y, 10);
   
   RectShape rect1 = rects.get(0);
   RectShape rect3 = plyrCollide;
@@ -172,14 +168,9 @@ void draw()
   RectShape rect5 = plyrCollideBack;
   
   CircleShape cir1 = radar;
-  CircleShape cir2 = treasure;
+  CircleShape cir2 = treasure1;
 
   //rect1.display();
-  
-  if(cir1.collides(cir2))
-  {
-    text("Colliding" , plyr.plyrPos.x+20, plyr.plyrPos.y);
-  }
   
   for (int j = 1; j < rects.size (); j ++)
   {
@@ -290,7 +281,19 @@ void draw()
       }  
     }
   }
-  
+  if(plyr.pulse)
+  {
+    plyr.radarPulse();
+  }
+    
+  if(cir1.collides(cir2))
+  {
+    plyr.pulse2=true;
+    if(plyr.pulse2)
+    {
+      plyr.blockPulse(cir2.position.x, cir2.position.y);
+    }
+  }
 }
 
 void keyPressed()
