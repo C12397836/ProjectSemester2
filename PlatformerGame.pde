@@ -27,8 +27,8 @@ int[] num= new int[map.levelSize];
 int[] blockHeight= new int[map.levelSize];
 void setup()
 {
-  size (displayWidth-200, displayHeight-200, P3D); 
-  
+  //size (displayWidth-200, displayHeight-200, P3D); 
+  size(500, 500);
     minim = new Minim(this);
     
     in = minim.getLineIn(Minim.MONO, 10, sampleRate, 16);
@@ -64,7 +64,7 @@ void setup()
     rects.add(ground);
   }
   
-  treasure.randomise(map.levelSize, blockHeight);
+  treasure.randomise(map.bla.size(), blockHeight);
   treasure.create();
   println(treasure.r);
 } 
@@ -83,18 +83,22 @@ void draw()
     setup();
   }*/
   //println(map.bla.get(treasure.r));
-  if(map.bla.get(treasure.r)==water||map.bla.get(treasure.r)==null)
+  if(map.bla.get(treasure.r)==water||map.bla.get(treasure.r)==null || map.blockHeight[treasure.r]> treasure.pos.y)
   {
-    
     println("gdhafdhsgesgggfdgfdfdhghfgdhfdjsadfihdsu");
-    treasure.randomise(map.levelSize, blockHeight);
+    //println("Height" + map.blockHeight[treasure.r]);
+    println("Block " +treasure.r);
+    treasure.randomise(map.bla.size(), blockHeight);
+    treasure.create();
   }
   treasure.update();
+  //println("Height " + map.blockHeight[treasure.r]);
+  println("Block " +treasure.r);
   
   //map.mapCreate();
-   camera(plyr.plyrPos.x, plyr.plyrPos.y, (height/2.0) / tan(PI*30.0 / 180.0), // eyeX, eyeY, eyeZ
+ /*  camera(plyr.plyrPos.x, plyr.plyrPos.y, (height/2.0) / tan(PI*30.0 / 180.0), // eyeX, eyeY, eyeZ
    plyr.plyrPos.x, plyr.plyrPos.y, 0, // centerX, centerY, centerZ
-   0, 1, 0); // upX, upY, upZ 
+   0, 1, 0); // upX, upY, upZ */
    
    for (int i = 0 ; i < in.bufferSize(); i ++)
     {
