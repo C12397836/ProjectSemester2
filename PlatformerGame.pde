@@ -183,20 +183,7 @@ void draw()
         plyr.plyrPos.y=rects.get(j).position.y+rects.get(j).h-10;
       }
     } 
-
-    if (rect3.collides(rect2))
-    {
-      plyr.plyrPos.x--;
-      if (rect3.position.x+rect3.w == rect2.position.x)
-      {
-        plyr.climb();
-
-        if (rect3.position.y <=rect2.position.y+rect2.h)
-        {
-          plyr.plyrPos.x+=plyr.w;
-        }
-      }
-    } 
+ 
     if (rect4.collides(rect2))
     {
       plyr.grounded=true;
@@ -215,13 +202,25 @@ void draw()
         }
     }
 
+    if (rect3.collides(rect2))
+    {
+      plyr.plyrPos.x--;
+      if (rect3.position.x+rect3.w == rect2.position.x)
+      {
+        plyr.climb();
+        if (rect3.position.y <=rect2.position.y+rect2.h)
+        {
+          plyr.plyrPos.x+=plyr.w;
+        }
+      }
+    }
+    
     if (rect5.collides(rect2))
     {
       plyr.plyrPos.x++;
-      if (int(rect5.position.x+1) == rect2.position.x+rect2.w)
+      if (rect5.position.x+1== rect2.position.x+rect2.w)
       {
         plyr.climb();
-
         if (rect5.position.y <=rect2.position.y+rect2.h)
         {
           plyr.plyrPos.x-=plyr.w;
