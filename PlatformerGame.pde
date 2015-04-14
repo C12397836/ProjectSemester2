@@ -152,7 +152,6 @@ void draw()
     plyr.grounded =false;
 
     t.update();
-    text(" "+ t.second, width-50, 50);
 
     RectShape player = new RectShape(plyr.plyrPos.x, plyr.plyrPos.y, 10, 10);
     rects.add(0, player);

@@ -31,10 +31,10 @@ class MapGenerator
 
   void update()
   {
-    for (int i =0; i<bla.size ()-1; i++)
+    /*for (int i =0; i<bla.size ()-1; i++)
     { 
       text(" "+(i+1), i*blockWidth, 200);
-    }
+    }*/
   }   
   int getRandom()
   {

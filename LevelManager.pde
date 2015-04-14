@@ -13,6 +13,7 @@ class LevelManager
     text("Start Screen", width/2, height/2);
     if (mousePressed)
     {
+      text("Loading", width/2, height/2+100);
       lvl=5;
     }
   }
