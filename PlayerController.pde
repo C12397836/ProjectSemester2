@@ -6,7 +6,7 @@ class PlayerController
   int terminalVelocity= 10;
   boolean[] keys;
   float moveSpeed, jumpHeight;
-  int h, w, loots;
+  int h, w, loots, score;
   boolean grounded, doubleJump, digging, pulse, pulse2;
 
   public PlayerController()
@@ -19,15 +19,16 @@ class PlayerController
     keys[0]=false;
     keys[1]=false;
     keys[2]=false;
-    moveSpeed=1;
-    h=20;
-    w=20;
+    h=40;
+    w=40;
+    moveSpeed=w/20;
     jumpHeight=10;
     grounded=false;
     digging=false;
     pulse=false;
     jumpV=blockWidth/2;
     loots=0;
+    score=0;
   }
 
   public PlayerController(int x, int y)
@@ -90,15 +91,10 @@ class PlayerController
     jumpV=0;
     plyrPos.y-=gravity;
     //plyr.jumpHeight=0;
-    if ( keys[0]==true) 
+    if ( keys[0]==true || keys[1]==true)
     {  
-      plyrPos.y--;
+      plyrPos.y-=moveSpeed;
     }
-    if ( keys[1]==true) 
-    {  
-      plyrPos.y--;
-    }
-    
   }
   
   int dig(int blockHeight)

@@ -13,12 +13,15 @@ import ddf.minim.Minim;
 PImage ground;
 PImage water;
 PImage p;
+PImage background;
+PFont font;
 
 int blockWidth;
 
 ArrayList<RectShape> rects = new ArrayList<RectShape>();
 ArrayList<CircleShape> cir = new ArrayList<CircleShape>();
 ArrayList<Treasure> loot = new ArrayList<Treasure>();
+ArrayList<Bg> bg = new ArrayList<Bg>();
 PlayerController plyr = new PlayerController(20, 100);
 MapGenerator map = new MapGenerator();
 
@@ -28,8 +31,10 @@ int[] num= new int[map.levelSize];
 int[] blockHeight= new int[map.levelSize];
 void setup()
 {
-  //size (displayWidth-200, displayHeight-200, P3D); 
-  size(500, 500);
+  size (displayWidth-200, displayHeight-200, P3D); 
+  //size(500, 500);
+  
+  font = loadFont("CooperBlack-48.vlw");
     minim = new Minim(this);
     
     in = minim.getLineIn(Minim.MONO, 10, sampleRate, 16);
@@ -44,8 +49,9 @@ void setup()
   water= loadImage("water.png");
 
   p= loadImage("p.png");
-
-  blockWidth=50;
+  background= loadImage("background.png");
+  
+  blockWidth=100;
 
   map.mapCreate();
 
@@ -74,7 +80,8 @@ Treasure treasure = new Treasure();
 void draw()
 {
   background(100, 100, 170);
-
+  image(background,-1000, -500, width+700, height+700);
+  image(background,-1000, -500, width+700, height+700);
   //New Level Reloader doesnt work >>
   /*if(plyr.plyrPos.x>= (blockWidth*(map.levelSize-5))-blockWidth)
   {
@@ -107,7 +114,7 @@ void draw()
   println("Block " +treasure.r);
   
   //map.mapCreate();
- /*  camera(plyr.plyrPos.x, plyr.plyrPos.y, (height/2.0) / tan(PI*30.0 / 180.0), // eyeX, eyeY, eyeZ
+   camera(plyr.plyrPos.x, plyr.plyrPos.y, (height/2.0) / tan(PI*30.0 / 180.0), // eyeX, eyeY, eyeZ
    plyr.plyrPos.x, plyr.plyrPos.y, 0, // centerX, centerY, centerZ
    0, 1, 0); // upX, upY, upZ */
    
@@ -228,7 +235,7 @@ void draw()
 
     if (rect3.collides(rect2))
     {
-      plyr.plyrPos.x--;
+      plyr.plyrPos.x-=plyr.moveSpeed;
       if (rect3.position.x+rect3.w == rect2.position.x)
       {
         plyr.climb();
@@ -241,7 +248,7 @@ void draw()
     
     if (rect5.collides(rect2))
     {
-      plyr.plyrPos.x++;
+      plyr.plyrPos.x+=plyr.moveSpeed;
       if (rect5.position.x+1== rect2.position.x+rect2.w)
       {
         plyr.climb();
@@ -317,6 +324,14 @@ void draw()
       plyr.blockPulse(cir2.position.x, cir2.position.y);
     }
   }
+  
+   textSize(40);
+   textFont(font);
+   textAlign(LEFT, TOP);
+   text("LEVEL: " , plyr.plyrPos.x-width/2, plyr.plyrPos.y-height/2);
+   textAlign(RIGHT, TOP);
+   text("TIME: "+t.second, plyr.plyrPos.x+width/2, plyr.plyrPos.y-height/2);
+   text("SCORE: "+plyr.score, plyr.plyrPos.x+width/2, plyr.plyrPos.y-height/2.5);
 }
 
 void keyPressed()
