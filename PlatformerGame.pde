@@ -363,6 +363,10 @@ void draw()
       }
     }
     
+    strokeWeight(4);
+    stroke(255);
+    line((blockWidth*(map.levelSize-2)), -1000, (blockWidth*(map.levelSize-2)), 5000);
+    
     textFont(font);
     fill(0,0,255);
     textSize(30);
@@ -380,10 +384,6 @@ void draw()
     {
       lvlMng.lvl=2;
     }
-    
-    strokeWeight(4);
-    stroke(255);
-    line((blockWidth*(map.levelSize-2)), -1000, (blockWidth*(map.levelSize-2)), 5000);
 
 
     if(plyr.plyrPos.x>(blockWidth*(map.levelSize-2))-(blockWidth/2) && plyr.plyrPos.x>(blockWidth*(map.levelSize-2))-(blockWidth/2)+50)
